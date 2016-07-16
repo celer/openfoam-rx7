@@ -1,0 +1,1 @@
+projection() rotate([0,90,0]) import("rx7.stl");

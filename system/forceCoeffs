@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+forceCoeffs1
+{
+    type        forceCoeffs;
+
+    libs ( "libforces.so" );
+
+    writeControl   timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     (rx7Group);
+    rho         rhoInf;      // Indicates incompressible
+    rhoInf      1;           // Redundant for incompressible
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+    /* 
+	CofR - Center of Rotation for calculating lift
+	I set this to the midpoint of the axles at the specified CG height provided by mazda
+    */
+    CofR        (1.219 0 0.413);  // Axle midpoint on ground, with Z = Center of gravity height
+    pitchAxis   (0 1 0);
+    magUInf     20;
+    lRef        2.44;       // Wheelbase length (m)
+    Aref        1.8;        // Frontal area (m^2)
+    /*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+    */
+}
+
+
+// ************************************************************************* //
